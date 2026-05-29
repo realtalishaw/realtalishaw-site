@@ -191,7 +191,7 @@ function HomePage({ content }: { content: SiteContent }) {
         <NotebookSection id="blog-preview" eyebrow="writing" title="Blog">
           <div className="mb-6 flex items-center justify-between gap-4">
             <p className="max-w-xl text-lg leading-8 text-ink-soft">
-              Posts coming soon.
+              Notes on AI, agentic commerce, pageantry, community, and building in public.
             </p>
             <Link className="ink-link hidden sm:inline-flex" to="/blog">
               All posts <ArrowUpRight size={18} />
@@ -292,7 +292,7 @@ function BlogIndex({ posts }: { posts: BlogPost[] }) {
           <p className="section-eyebrow">field notes</p>
           <h1 className="section-title">Blog</h1>
           <p className="mt-4 max-w-2xl text-lg leading-8 text-ink-soft">
-            Posts coming soon.
+            Notes on AI, agentic commerce, pageantry, community, and building in public.
           </p>
         </div>
         <BlogGrid posts={posts} />
