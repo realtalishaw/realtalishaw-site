@@ -1,0 +1,66 @@
+import { defineSchema, defineTable } from "convex/server";
+import { v } from "convex/values";
+
+export default defineSchema({
+  profile: defineTable({
+    name: v.string(),
+    handle: v.string(),
+    headline: v.string(),
+    bio: v.array(v.string()),
+    photoUrl: v.optional(v.string()),
+    location: v.optional(v.string()),
+    updatedAt: v.number(),
+  }),
+  socials: defineTable({
+    platform: v.string(),
+    handle: v.string(),
+    url: v.string(),
+    sortOrder: v.number(),
+    isVisible: v.boolean(),
+  }).index("by_visibility", ["isVisible", "sortOrder"]),
+  projects: defineTable({
+    title: v.string(),
+    slug: v.string(),
+    description: v.string(),
+    url: v.optional(v.string()),
+    tags: v.array(v.string()),
+    isFeatured: v.boolean(),
+    sortOrder: v.number(),
+  }).index("by_featured", ["isFeatured", "sortOrder"]),
+  research: defineTable({
+    title: v.string(),
+    slug: v.string(),
+    organization: v.string(),
+    description: v.string(),
+    url: v.optional(v.string()),
+    tags: v.array(v.string()),
+    sortOrder: v.number(),
+  }).index("by_order", ["sortOrder"]),
+  nowItems: defineTable({
+    title: v.string(),
+    description: v.string(),
+    date: v.optional(v.string()),
+    sortOrder: v.number(),
+    isVisible: v.boolean(),
+  }).index("by_visibility", ["isVisible", "sortOrder"]),
+  press: defineTable({
+    title: v.string(),
+    source: v.string(),
+    url: v.string(),
+    date: v.optional(v.string()),
+    description: v.string(),
+    isVisible: v.boolean(),
+    sortOrder: v.number(),
+  }).index("by_visibility", ["isVisible", "sortOrder"]),
+  posts: defineTable({
+    title: v.string(),
+    slug: v.string(),
+    excerpt: v.string(),
+    content: v.string(),
+    coverImageUrl: v.optional(v.string()),
+    tags: v.array(v.string()),
+    publishedAt: v.number(),
+    updatedAt: v.optional(v.number()),
+    status: v.union(v.literal("draft"), v.literal("published")),
+  }).index("by_status_published", ["status", "publishedAt"]),
+});
