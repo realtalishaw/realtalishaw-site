@@ -1,0 +1,20 @@
+name: realtalishaw
+region: atl
+static_sites:
+  - name: web
+    github:
+      repo: realtalishaw/realtalishaw-site
+      branch: main
+      deploy_on_push: true
+    source_dir: /
+    build_command: npm install -g pnpm && pnpm install --frozen-lockfile && pnpm build
+    output_dir: /dist
+    index_document: index.html
+    catchall_document: index.html
+ingress:
+  rules:
+    - component:
+        name: web
+      match:
+        path:
+          prefix: /
