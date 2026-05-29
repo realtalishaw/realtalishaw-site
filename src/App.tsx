@@ -4,7 +4,7 @@ import {
 } from "lucide-react";
 import { useQuery } from "convex/react";
 import { makeFunctionReference } from "convex/server";
-import { useEffect, useState, type ReactNode } from "react";
+import { type ReactNode } from "react";
 import {
   FaFacebookF,
   FaGithub,
@@ -97,7 +97,6 @@ function NotebookShell({
 }) {
   return (
     <div className="min-h-screen bg-[var(--desk)] px-3 py-4 text-ink sm:px-6 lg:px-10 lg:py-10">
-      <NotebookIntro />
       <div className="mx-auto max-w-6xl">
         <div className={`notebook-page ${compact ? "notebook-page-compact" : ""}`}>
           <div className="binder-holes" aria-hidden="true">
@@ -106,36 +105,6 @@ function NotebookShell({
             <span />
           </div>
           {children}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function NotebookIntro() {
-  const [shouldPlay, setShouldPlay] = useState(false);
-
-  useEffect(() => {
-    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const isDesktop = window.matchMedia("(min-width: 900px)").matches;
-    const hasPlayed = window.sessionStorage.getItem("talisha-notebook-opened") === "true";
-
-    if (isDesktop && !reduceMotion && !hasPlayed) {
-      setShouldPlay(true);
-      window.sessionStorage.setItem("talisha-notebook-opened", "true");
-    }
-  }, []);
-
-  if (!shouldPlay) {
-    return null;
-  }
-
-  return (
-    <div className="notebook-intro" aria-hidden="true">
-      <div className="notebook-cover">
-        <div className="cover-label">
-          <span>notes</span>
-          <strong>Talisha White</strong>
         </div>
       </div>
     </div>
